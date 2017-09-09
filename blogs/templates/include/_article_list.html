@@ -1,0 +1,26 @@
+  <ul class="bloglist">
+    {% for article in articles %}
+      <li>
+        <div class="arrow_box">
+          <div class="ti"></div>
+          <!--三角形-->
+          <div class="ci"></div>
+          <!--圆形-->
+          <h2 class="title"><a href="{{ url_for('main.article',post_id=article.id) }}" target="_blank">{{ article.title }}</a></h2>
+          <ul class="textinfo">
+              {% if article.thumbnail %}
+            <a href="/"><img src="{{ url_for('static', filename=article.thumbnail) }}"></a>
+              {% endif %}
+            <p> {{ article.summary|safe }}</p>
+          </ul>
+          <ul class="details">
+            <li class="likes"><a href="#">10</a></li>
+            <li class="comments"><a href="#">34</a></li>
+            <li class="icon-time"><a href="#">{{ article.created|date }}</a></li>
+          </ul>
+        </div>
+        <!--arrow_box end-->
+       </li>
+     {% endfor %}
+{{ pagination.links|safe }}
+    </ul>

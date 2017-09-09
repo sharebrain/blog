@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>{% block title %}个人博客{% endblock %}</title>
+     {% block head %}
+<meta name="keywords" content="黑色模板,个人网站模板,个人博客模板,博客模板,css3,html5,网站模板" />
+<meta name="description" content="这是一个有关黑色时间轴的css3 html5 网站模板" />
+<link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/animation.css') }}" rel="stylesheet">
+<!-- 返回顶部调用 begin -->
+<link href="{{ url_for('static', filename='css/lrtk.css') }}" rel="stylesheet" />
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/js.js') }}"></script>
+<!-- 返回顶部调用 end-->
+<!--[if lt IE 9]>
+<script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+<![endif]-->
+
+    {% endblock %}
+   {% block css %}
+   {% endblock %}
+</head>
+<body>
+<header>
+     {% block nav %}
+
+     {% endblock %}
+</header>
+<!--header end-->
+
+<div id="mainbody">
+{% block top %}
+  <div class="info">
+    <figure> <img src="{{ url_for('static', filename='images/art.jpg') }}"  alt="Panama Hat">
+      <figcaption><strong>渡人如渡己，渡已，亦是渡</strong> 当我们被误解时，会花很多时间去辩白。 但没有用，没人愿意听，大家习惯按自己的所闻、理解做出判别，每个人其实都很固执。与其努力且痛苦的试图扭转别人的评判，不如默默承受，给大家多一点时间和空间去了解。而我们省下辩解的功夫，去实现自身更久远的人生价值。其实，渡人如渡己，渡已，亦是渡人。</figcaption>
+    </figure>
+    <div class="card">
+      <h1>我的名片</h1>
+      <p>网名：<span style="font-size: 11px">I fought I lost and I rest</span></p>
+      <p>职业：工科狗、单身汪、大龄作死青年</p>
+      <p>QQ：1261931128</p>
+      <p>Email：1261921128@qq.com</p>
+      <ul class="linkmore">
+        <li><a href="/" class="talk" title="给我留言"></a></li>
+        <li><a href="/" class="address" title="联系地址"></a></li>
+        <li><a href="/" class="email" title="给我写信"></a></li>
+        <li><a href="/" class="photos" title="生活照片"></a></li>
+        <li><a href="/" class="heart" title="关注我"></a></li>
+      </ul>
+    </div>
+  </div>
+  <!--info end-->
+  <div class="blank"></div>
+{% endblock %}
+  <div class="blogs">
+  {% block content%}
+    <ul class="bloglist">
+     {% for article in get_latest_articles(None,5) %}
+      <li>
+        <div class="arrow_box">
+          <div class="ti"></div>
+          <!--三角形-->
+          <div class="ci"></div>
+          <!--圆形-->
+          <h2 class="title"><a href="{{ url_for('main.article',post_id=article.id) }}" target="_blank">{{ article.title }}</a></h2>
+          <ul class="textinfo">
+             {% if article.thumbnail %}
+            <a href="/"><img src="{{ url_for('static', filename=article.thumbnail) }}"></a>
+             {% endif %}
+            <p> {{ article.summary|safe }}</p>
+          </ul>
+          <ul class="details">
+            <li class="likes"><a href="#">10</a></li>
+            <li class="comments"><a href="#">34</a></li>
+            <li class="icon-time"><a href="#">{{ article.created|date }}</a></li>
+          </ul>
+        </div>
+        <!--arrow_box end-->
+      </li>
+        {% endfor %}
+    </ul>
+    {% endblock %}<!--bloglist end-->
+   {% block aside %}
+
+  {% endblock %}
+  </div>
+  <!--blogs end-->
+</div>
+<!--mainbody end-->
+{% block footer %}
+{% endblock %}
+<!-- jQuery仿腾讯回顶部和建议 代码开始 -->
+<div id="tbox"> <a id="togbook" href="/e/tool/gbook/?bid=1"></a> <a id="gotop" href="javascript:void(0)"></a> </div>
+<!-- 代码结束 -->
+</body>
+</html>

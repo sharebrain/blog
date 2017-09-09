@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <link href="{{ url_for('static',filename='css/pagination.css') }}" rel="stylesheet">
+{% endblock %}
+{% block nav %}
+    {% include 'include/_nav.html' %}
+{% endblock %}
+{% block top %}
+{% endblock %}
+{% block  content%}
+    {% include 'include/_article_list.html' %}
+{% endblock %}
+{% block aside %}
+    {% include 'include/_aside2.html' %}
+{% endblock %}
+{% block footer %}
+    {% include 'include/_footer.html' %}
+{% endblock %}

@@ -1,0 +1,52 @@
+<div id="index_view">
+    {% if article %}
+      <h2 class="t_nav"><a href="/">网站首页</a><a href="{{ url_for('main.category',longslug=article.category.longslug) }}">{{ article.category.name }}</a></h2>
+      <h1 class="c_titile">{{ article.title }}！</h1>
+      <p class="box">发布时间：{{ article.created|date }}<span>编辑：{{ article.author.name|author }}</span>阅读（{{ article.hits }}）</p>
+        <ul>
+       {{ article.body|safe }}
+        </ul>
+      <div class="share">
+        <!-- Baidu Button BEGIN -->
+        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"> <span class="bds_more">分享到：</span> <a class="bds_qzone"></a> <a class="bds_tsina"></a> <a class="bds_tqq"></a> <a class="bds_renren"></a> <a class="bds_t163"></a> <a class="shareCount"></a> </div>
+        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script>
+        <script type="text/javascript" id="bdshell_js"></script>
+        <script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+        <!-- Baidu Button END -->
+      </div>
+      <div class="otherlink">
+        <h2>相关文章</h2>
+        <ul>
+        {% if get_related_articles(article.id,5) %}
+            {% for related in get_related_articles(article.id,5) %}
+          <li><a href="{{ url_for('main.article',post_id=related.id) }}" title="{{ related.title }}">{{ related.title }}</a></li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+      </div>
+        <div class="ds-thread" data-thread-key="{{ article.id }}" data-title="{{ article.title }}" data-url="{{ url_for('main.article', post_id=article.id) }}"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"hushuoblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+{% else %}
+<div>
+<ul>
+    <p style="font-size: larger">对不起，文章不存在</p>
+</ul>
+</div>
+
+{% endif %}
+    </div>

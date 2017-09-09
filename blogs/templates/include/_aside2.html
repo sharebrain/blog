@@ -1,0 +1,30 @@
+    <aside>
+      <div class="search">
+        <form class="searchform" method="get" action="{{ url_for('main.search') }}">
+          <input type="text" name="s" value="Search" onfocus="this.value=''" onblur="this.value='Search'">
+        </form>
+      </div>
+      <div class="sunnav">
+        <ul>
+            {% for category in category_lists(None,limit=4) %}
+          <li><a href="{{ url_for('main.category',longslug=category.longslug) }}" target="_blank" title="{{ category.name }}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="tuijian">
+        <h2>栏目更新</h2>
+        <ol>
+           {% for article in get_recommend_articles() %}
+          <li><span><strong>{{ loop.index }}</strong></span><a href="{{ url_for('main.article',post_id=article.id) }}">{{ article.title }}</a></li>
+           {% endfor %}
+        </ol>
+      </div>
+      <div class="clicks">
+        <h2>热门点击</h2>
+        <ol>
+            {% for article in get_top_articles() %}
+          <li><span><a href="{{ url_for('main.category',longslug=article.category.longslug) }}">{{ article.category.name }}</a></span><a href="{{ url_for('main.article',post_id=article.id) }}">{{ article.title }}</a></li>
+            {% endfor %}
+        </ol>
+      </div>
+    </aside>

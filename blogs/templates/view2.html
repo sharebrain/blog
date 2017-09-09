@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <title>view-黑色时间轴个人博客模板</title>
+<meta name="keywords" content="黑色模板,个人网站模板,个人博客模板,博客模板,css3,html5,网站模板" />
+<meta name="description" content="这是一个有关黑色时间轴的css3 html5 网站模板" />
+<link href="{{url_for('static',filename='css/styles.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='css/view.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/darkula.css') }}">
+<!-- 返回顶部调用 begin -->
+<link href="{{url_for('static', filename='css/lrtk.css')}}" rel="stylesheet" />
+    <link href="{{ url_for('static',filename='css/pygments.css') }}" rel="stylesheet">
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/js.js')}}"></script>
+<!-- 返回顶部调用 end-->
+<!--[if lt IE 9]>
+<script src="{{url_for('static', filename='js/modernizr.js')}}"></script>
+<![endif]-->
+{% endblock %}
+{% block nav %}
+    {% include 'include/_nav.html' %}
+{% endblock %}
+{% block top %}
+{% endblock %}
+{% block content %}
+{% include 'include/_article.html' %}
+{% endblock %}
+{% block aside %}
+    {% include 'include/_aside2.html' %}
+{% endblock %}
+{% block footer %}
+    {% include 'include/_footer.html' %}
+
+<script src="{{ url_for('static',filename='js/highlight.pack.js') }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}

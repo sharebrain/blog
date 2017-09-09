@@ -1,0 +1,46 @@
+<footer>
+  <div class="footer-mid">
+    <div class="links">
+      <h2>友情链接</h2>
+      <ul>
+      {% for link in friendlinks() %}
+        <li><a href="{{ link.url }}">{{ link.anchor }}</a></li>
+      {% endfor %}
+      </ul>
+
+    </div>
+    <div class="visitors">
+      	<div class="ds-recent-comments" data-num-items="4" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+<!-- 多说最新评论 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"hushuoblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+    </div>
+    <section class="flickr">
+      <h2>摄影作品</h2>
+      <ul>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/01.jpg') }}"></a></li>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/02.jpg') }}"></a></li>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/03.jpg') }}"></a></li>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/04.jpg') }}"></a></li>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/05.jpg') }}"></a></li>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/06.jpg') }}"></a></li>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/07.jpg') }}"></a></li>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/08.jpg') }}"></a></li>
+        <li><a href="/"><img src="{{ url_for('static', filename='images/09.jpg') }}"></a></li>
+      </ul>
+    </section>
+  </div>
+  <div class="footer-bottom">
+    <p>Copyright 2013 Design by <a href="http://www.yangqq.com">DanceSmile</a></p>
+  </div>
+</footer>

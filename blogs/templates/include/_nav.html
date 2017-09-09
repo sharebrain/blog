@@ -1,0 +1,11 @@
+  <nav id="nav">
+
+    <ul>
+      <li><a href="/" >网站首页</a></li>
+        {% for category in category_lists() %}
+      <li><a href="{{ url_for('main.category', longslug=category.longslug) }}" target="_self" title="{{ category.name }}">{{ category.name }}</a></li>
+         {% endfor %}
+    </ul>
+    <script src="{{ url_for('static', filename='js/silder.js') }}"></script><!--获取当前页导航 高亮显示标题-->
+
+  </nav>

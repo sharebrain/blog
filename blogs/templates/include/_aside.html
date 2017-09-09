@@ -1,0 +1,36 @@
+    <aside>
+      <div class="tuijian">
+        <h2>推荐文章</h2>
+        <ol>
+                {% for article in get_recommend_articles() %}
+          <li><span><strong>{{ loop.index }}</strong></span><a href="{{ url_for('main.article',post_id=article.id) }}">{{ article.title }}</a></li>
+                {% endfor %}
+        </ol>
+      </div>
+      <div class="clicks">
+        <h2>热门点击</h2>
+        <ol>
+                {% for article in get_top_articles() %}
+          <li><span><a href="{{ url_for('main.category',longslug=article.category.longslug) }}">{{ article.category.name }}</a></span><a href="{{ url_for('main.article',post_id=article.id) }}">{{ article.title }}</a></li>
+                {% endfor %}
+        </ol>
+      </div>
+      <div class="search">
+        <form class="searchform" method="get" action="{{ url_for('main.search') }}">
+          <input type="text" name="s" value="Search" onfocus="this.value=''" onblur="this.value='Search'">
+        </form>
+      </div>
+      <div class="viny">
+        <dl>
+          <dt class="art"><img src="{{ url_for('static', filename='images/artwork.png') }}" alt="专辑"></dt>
+          <dd class="icon-song"><span></span>时间煮雨</dd>
+          <dd class="icon-artist"><span></span>歌手：郁可唯</dd>
+          <dd class="icon-album"><span></span>所属专辑：《小时代》</dd>
+          <dd class="icon-like"><span></span><a href="/">喜欢</a></dd>
+          <dd class="music">
+            <audio src="{{ url_for('static', filename='images/time.mp3') }}" controls></audio>
+          </dd>
+          <!--也可以添加loop属性 音频加载到末尾时，会重新播放-->
+        </dl>
+      </div>
+    </aside>
